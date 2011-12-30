@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jquant-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jquant-louxor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jquant-parent"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jquant-strategy"/>
+	<classpathentry kind="var" path="M2_REPO/joda-time/joda-time/1.6.2/joda-time-1.6.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar"/>
+	<classpathentry kind="var" path="M2_REPO/net/objectlab/kit/datecalc-common/1.2.0/datecalc-common-1.2.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/net/objectlab/kit/datecalc-joda/1.2.0/datecalc-joda-1.2.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-math/2.2/commons-math-2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2/commons-collections-3.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/3.0.5.RELEASE/spring-aop-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE.jar" sourcepath="/M2_REPO/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/3.0.5.RELEASE/spring-context-support-3.0.5.RELEASE.jar" sourcepath="/M2_REPO/org/springframework/spring-context-support/3.0.5.RELEASE/spring-context-support-3.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/3.0.5.RELEASE/spring-expression-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-orm/3.0.5.RELEASE/spring-orm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/3.0.5.RELEASE/spring-tx-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/3.0.5.RELEASE/spring-test-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" sourcepath="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.4.2/slf4j-api-1.4.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-log4j12/1.4.2/slf4j-log4j12-1.4.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javassist/javassist/3.12.0.GA/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.6/antlr-2.7.6.jar" sourcepath="M2_REPO/antlr/antlr/2.7.6/antlr-2.7.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/cglib/cglib/2.2/cglib-2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/objenesis/objenesis/1.2/objenesis-1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/unitils/unitils/2.3/unitils-2.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-lang3/3.0.1/commons-lang3-3.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
