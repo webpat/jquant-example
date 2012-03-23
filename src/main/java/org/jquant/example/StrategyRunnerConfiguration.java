@@ -1,8 +1,11 @@
 package org.jquant.example;
 
 import org.joda.time.DateTime;
+import org.jquant.execution.IBroker;
+import org.jquant.execution.PaperBroker;
 import org.jquant.model.Currency;
 import org.jquant.model.MarketDataPrecision;
+import org.jquant.portfolio.Portfolio;
 import org.jquant.strategy.StrategyRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +18,28 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StrategyRunnerConfiguration {
 
+	@Bean
+	public IBroker broker(){
+		
+		IBroker broker = new PaperBroker(0, 0, 0);
+		return broker;
+	}
+	
 	
 	@Bean
 	public StrategyRunner runner(){
 		
 		DateTime debut = new DateTime("2005-03-25");
 		DateTime fin = new DateTime();
-		StrategyRunner runner = new StrategyRunner(debut,fin,Currency.EUR,MarketDataPrecision.CANDLE);
+		
+
+		Portfolio ptf = new Portfolio("My strategy portfolio", Currency.USD);
+		/*
+		 * Init Portfolio with 10 000 USD cash 
+		 */
+		ptf.addCash(10000);
+		
+		StrategyRunner runner = new StrategyRunner(ptf,debut,fin,Currency.EUR,MarketDataPrecision.CANDLE);
 		runner.setBasePackage("org.jquant.example.ma");
 		return runner;
 	}

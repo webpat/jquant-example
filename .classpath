@@ -6,7 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/jquant-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jquant-louxor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jquant-parent"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jquant-strategy"/>
 	<classpathentry kind="var" path="M2_REPO/joda-time/joda-time/1.6.2/joda-time-1.6.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar"/>
 	<classpathentry kind="var" path="M2_REPO/net/objectlab/kit/datecalc-common/1.2.0/datecalc-common-1.2.0.jar"/>
