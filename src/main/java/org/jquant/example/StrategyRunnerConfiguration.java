@@ -1,10 +1,10 @@
 package org.jquant.example;
 
 import org.joda.time.DateTime;
-import org.jquant.execution.IBroker;
-import org.jquant.execution.PaperBroker;
 import org.jquant.model.Currency;
 import org.jquant.model.MarketDataPrecision;
+import org.jquant.order.IOrderManager;
+import org.jquant.order.OrderManager;
 import org.jquant.portfolio.Portfolio;
 import org.jquant.strategy.StrategyRunner;
 import org.springframework.context.annotation.Bean;
@@ -19,9 +19,9 @@ import org.springframework.context.annotation.Configuration;
 public class StrategyRunnerConfiguration {
 
 	@Bean
-	public IBroker broker(){
+	public IOrderManager broker(){
 		
-		IBroker broker = new PaperBroker(0, 0, 0);
+		IOrderManager broker = new OrderManager(0, 0, 0);
 		return broker;
 	}
 	
@@ -40,7 +40,7 @@ public class StrategyRunnerConfiguration {
 		ptf.addCash(10000);
 		
 		StrategyRunner runner = new StrategyRunner(ptf,debut,fin,Currency.EUR,MarketDataPrecision.CANDLE);
-		runner.setBasePackage("org.jquant.example.ma");
+		runner.setBasePackage("org.jquant.example.trend");
 		return runner;
 	}
 	

@@ -3,10 +3,8 @@ package org.jquant.example.ma;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jquant.data.Symbols;
+import org.jquant.data.Instruments;
 import org.jquant.indicator.SMA;
-import org.jquant.instrument.Equity;
-import org.jquant.model.IInstrument;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
@@ -48,15 +46,15 @@ public class SimpleStrategy extends AbstractStrategy {
 	 */
 	@Override
 	public void initMarket() {
-		addInstrument(Symbols.HEINZ);
-		addInstrument(Symbols.IBM);
+		addInstrument(Instruments.HEINZ);
+		addInstrument(Instruments.IBM);
 
 	}
 
 	@Override
 	public void onCandle(InstrumentId instrument, Candle candle) {
 		
-		IInstrument i = new Equity(instrument);
+		
 //		System.out.printf(	"name : %1$s \t " +
 //							"date : %2$td-%2$tm-%2$tY \t " +
 //							"close: %3$f \t" +
@@ -71,7 +69,7 @@ public class SimpleStrategy extends AbstractStrategy {
 			if (portfolio.getCash()>candle.getHigh()){
 				
 				double qty = Math.floor(portfolio.getCash()/candle.getClose());
-				sendMarketOrder(i, OrderSide.BUY, qty, "Achat sur signal SMA");
+				sendMarketOrder(instrument, OrderSide.BUY, qty, "Achat sur signal SMA");
 				logger.info("Bought "+qty + " of " + instrument.getCode() + " at date " + candle.getDate().toString("dd/MM/yyyy"));
 			}
 		}
@@ -80,11 +78,11 @@ public class SimpleStrategy extends AbstractStrategy {
 		 */
 		if (smaList.get(instrument).getValue(candle.getDate())<candle.getOpen()){
 			// Do we have a position on instrument i ? 
-			if (portfolio.getPosition(i)>0){
+			if (hasPosition(instrument)){
 				
-				double qty = portfolio.getPosition(i);
-				// Sell on low (worst case) 
-				sendMarketOrder(i, OrderSide.SELL, qty, "Vente sur signal SMA");
+				double qty = portfolio.getPosition(instrument);
+				// Sell 
+				sendMarketOrder(instrument, OrderSide.SELL, qty, "Vente sur signal SMA");
 				logger.info("Sold "+qty + " of " + instrument.getCode()+ " at date " + candle.getDate().toString("dd/MM/yyyy"));
 			}
 		}
