@@ -1,4 +1,4 @@
-package org.jquant.example.trend;
+package org.jquant.example.range;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -76,15 +76,22 @@ public class CounterTrend extends AbstractStrategy {
 
 	@Override
 	public void initMarket() {
-		addInstrument(Instruments.GOOG);
+		addInstrument(Instruments.IBM);
 
 	}
 	
 	@Override
 	public void onPositionOpened(TradeSide side, InstrumentId instrumentId) {
 		super.onPositionOpened(side, instrumentId);
-		//SEND Trailing stop order for 10 googles high-low
+		//SEND Trailing stop order for 10 googles
+		double pos = portfolio.getPosition(instrumentId);
 		// if Position.LONG or Position.SHORT
+		if (pos>0){
+			sendTrailingStopOrder(instrumentId, OrderSide.SELL, 10, 0.2, "Trailing Stop Loss");
+		}
+		if (pos<0){
+			sendTrailingStopOrder(instrumentId, OrderSide.BUY, 10, 0.2, "Trailing Stop Loss");
+		}
 	}
 
 }

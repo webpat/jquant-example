@@ -29,7 +29,7 @@ public class StrategyRunnerConfiguration {
 	@Bean
 	public StrategyRunner runner(){
 		
-		DateTime debut = new DateTime("2005-03-25");
+		DateTime debut = new DateTime("2000-03-25");
 		DateTime fin = new DateTime();
 		
 

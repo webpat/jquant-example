@@ -1,4 +1,4 @@
-package org.jquant.example.ma;
+package org.jquant.example.trend;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy(value="Simple Strategy")
-public class SimpleStrategy extends AbstractStrategy {
+public class SMACrossOver extends AbstractStrategy {
 
 	private static final int MA_LENGTH = 50;
 	
@@ -69,7 +69,7 @@ public class SimpleStrategy extends AbstractStrategy {
 			if (portfolio.getCash()>candle.getHigh()){
 				
 				double qty = Math.floor(portfolio.getCash()/candle.getClose());
-				sendMarketOrder(instrument, OrderSide.BUY, qty, "Achat sur signal SMA");
+				sendMarketOrder(instrument, OrderSide.BUY, qty,CandleData.OPEN,  "Achat sur signal SMA");
 				logger.info("Bought "+qty + " of " + instrument.getCode() + " at date " + candle.getDate().toString("dd/MM/yyyy"));
 			}
 		}
@@ -82,7 +82,7 @@ public class SimpleStrategy extends AbstractStrategy {
 				
 				double qty = portfolio.getPosition(instrument);
 				// Sell 
-				sendMarketOrder(instrument, OrderSide.SELL, qty, "Vente sur signal SMA");
+				sendMarketOrder(instrument, OrderSide.SELL, qty,CandleData.OPEN, "Vente sur signal SMA");
 				logger.info("Sold "+qty + " of " + instrument.getCode()+ " at date " + candle.getDate().toString("dd/MM/yyyy"));
 			}
 		}
