@@ -32,12 +32,10 @@ public class StrategyRunnerConfiguration {
 		DateTime debut = new DateTime("2000-03-25");
 		DateTime fin = new DateTime();
 		
-
-		Portfolio ptf = new Portfolio("My strategy portfolio", Currency.USD);
 		/*
 		 * Init Portfolio with 10 000 USD cash 
 		 */
-		ptf.addCash(10000);
+		Portfolio ptf = new Portfolio("My strategy portfolio", Currency.USD,10000);
 		
 		StrategyRunner runner = new StrategyRunner(ptf,debut,fin,Currency.EUR,MarketDataPrecision.CANDLE);
 		runner.setBasePackage("org.jquant.example.trend");

@@ -35,12 +35,9 @@ public class FourDaysUpAndShortTakeProfit extends AbstractStrategy {
 		count = 0;
 		
 	}
-
-	/**
-	 * FIXME : OnCandleOpen 
-	 */
 	@Override
-	public void onCandle(InstrumentId instrument, Candle candle) {
+	public void onCandleOpen(InstrumentId instrument, Candle candle) {
+		super.onCandleOpen(instrument, candle);
 		if (prevClose != -1){
 			if (!hasPosition(instrument)){
 				if (prevClose < candle.getClose()){
@@ -65,6 +62,7 @@ public class FourDaysUpAndShortTakeProfit extends AbstractStrategy {
 		}
 		prevClose = candle.getClose();
 	}
+	
 
 	@Override
 	public void initMarket() {
