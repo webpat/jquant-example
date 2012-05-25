@@ -21,7 +21,7 @@ import org.jquant.strategy.Strategy;
 @Strategy(value="Simple Strategy")
 public class SMACrossOver extends AbstractStrategy {
 
-	private static final int MA_LENGTH = 50;
+	private static final int MA_LENGTH = 110;
 	
 	/**
 	 * My indicators collection 
@@ -54,13 +54,7 @@ public class SMACrossOver extends AbstractStrategy {
 	@Override
 	public void onCandle(InstrumentId instrument, Candle candle) {
 		
-		
-//		System.out.printf(	"name : %1$s \t " +
-//							"date : %2$td-%2$tm-%2$tY \t " +
-//							"close: %3$f \t" +
-//							"sma :  %4$f \n"
-//							, instrument,candle.getDate().toDate(), candle.getClose(),smaList.get(instrument).getValue(candle.getDate()) );
-		
+	
 		/*
 		 * If Open moves above SMA then it's a buy signal, ALL IN 
 		 */
@@ -70,7 +64,7 @@ public class SMACrossOver extends AbstractStrategy {
 				
 				double qty = Math.floor(portfolio.getCash()/candle.getClose());
 				sendMarketOrder(instrument, OrderSide.BUY, qty,CandleData.OPEN,  "Achat sur signal SMA");
-				logger.info("Bought "+qty + " of " + instrument.getCode() + " at date " + candle.getDate().toString("dd/MM/yyyy"));
+				logger.info("BUY Signal for "+qty + " of " + instrument.getCode() + " at date " + candle.getDate().toString("dd/MM/yyyy"));
 			}
 		}
 		/*
@@ -83,7 +77,7 @@ public class SMACrossOver extends AbstractStrategy {
 				double qty = portfolio.getPosition(instrument);
 				// Sell 
 				sendMarketOrder(instrument, OrderSide.SELL, qty,CandleData.OPEN, "Vente sur signal SMA");
-				logger.info("Sold "+qty + " of " + instrument.getCode()+ " at date " + candle.getDate().toString("dd/MM/yyyy"));
+				logger.info("SELL Signal for  "+qty + " of " + instrument.getCode()+ " at date " + candle.getDate().toString("dd/MM/yyyy"));
 			}
 		}
 		

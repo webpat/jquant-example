@@ -7,13 +7,12 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
                       
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.jquant</groupId>
   <artifactId>jquant-example</artifactId>
   <packaging>jar</packaging>
   <parent>
   	<groupId>org.jquant</groupId>
   	<artifactId>jquant-parent</artifactId>
-  	<version>${project.version}</version>
+  	<version>1.0b1</version>
   </parent>
   <name>jquant-example</name>
   <version>${project.version}</version>
@@ -26,10 +25,6 @@
 		<artifactId>jquant-core</artifactId>
 	</dependency>
 	
-	<dependency>
-		<groupId>org.jquant</groupId>
-		<artifactId>jquant-strategy</artifactId>
-	</dependency>
 	
 	<dependency>
 		<groupId>org.jquant</groupId>
