@@ -38,7 +38,13 @@ public class StrategyRunnerConfiguration {
 		Portfolio ptf = new Portfolio("My strategy portfolio", Currency.USD,10000);
 		
 		StrategyRunner runner = new StrategyRunner(ptf,debut,fin,Currency.EUR,MarketDataPrecision.CANDLE);
-		runner.setBasePackage("org.jquant.example.trend");
+//		runner.setBasePackage("org.jquant.example.trend");
+//		runner.setStrategyClassName("org.jquant.example.pattern.FourDaysUpAndShortTakeProfit");
+//		runner.setStrategyClassName("org.jquant.example.pattern.PanicRecovery");
+//		runner.setStrategyClassName("org.jquant.example.breakout.BreakoutWithMultipleExits");
+//		runner.setStrategyClassName("org.jquant.example.breakout.SimpleBreakout");
+		runner.setStrategyClassName("org.jquant.example.gap.SimpleGap");
+//		runner.setStrategyClassName("org.jquant.example.gap.StockDownGap");
 		return runner;
 	}
 	

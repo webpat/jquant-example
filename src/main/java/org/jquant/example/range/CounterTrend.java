@@ -1,5 +1,8 @@
 package org.jquant.example.range;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.jquant.data.Instruments;
@@ -7,7 +10,7 @@ import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.portfolio.Trade.TradeSide;
 import org.jquant.serie.Candle;
-import org.jquant.strategy.AbstractStrategy;
+import org.jquant.strategy.MonoStrategy;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -18,7 +21,7 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy(value="Counter Trend strategy")
-public class CounterTrend extends AbstractStrategy {
+public class CounterTrend extends MonoStrategy {
 
 	
 	private int mDownCount;
@@ -52,7 +55,7 @@ public class CounterTrend extends AbstractStrategy {
 			mUpCount = 0;
 		}
 		
-		if (!hasPosition(instrument)){ // Am I flat ? 
+		if (!hasPosition()){ // Am I flat ? 
 			
 			if (mDownCount == mNumSignal){
 				// Expecting a mean reversing, Place limit Buy Order on Candle.Low + tickSize
@@ -75,9 +78,9 @@ public class CounterTrend extends AbstractStrategy {
 	}
 
 	@Override
-	public void initMarket() {
-		addInstrument(Instruments.IBM);
-
+	public List<InstrumentId> getMarket() {
+		return Arrays.asList(Instruments.HEINZ);
+	
 	}
 	
 	@Override

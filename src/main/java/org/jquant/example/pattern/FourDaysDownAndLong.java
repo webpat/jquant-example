@@ -1,11 +1,14 @@
 package org.jquant.example.pattern;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.jquant.data.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.AbstractStrategy;
+import org.jquant.strategy.MonoStrategy;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -16,12 +19,12 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy
-public class FourDaysDownAndLong extends AbstractStrategy {
+public class FourDaysDownAndLong extends MonoStrategy {
 
-	//simultation parameter: quantity traded 
+	//simulation parameter: quantity traded 
 	private final int quantity = 10 ;
 	
-	//simultation parameter : number of down closes 
+	//simulation parameter : number of down closes 
 	private final int closesCount = 3 ;
 	
 	private int count;
@@ -38,7 +41,7 @@ public class FourDaysDownAndLong extends AbstractStrategy {
 	@Override
 	public void onCandle(InstrumentId instrument, Candle candle) {
 		if (prevClose != -1){
-			if (!hasPosition(instrument)){
+			if (!hasPosition()){
 				if (prevClose > candle.getClose()){
 					count++;
 				}else {
@@ -61,9 +64,9 @@ public class FourDaysDownAndLong extends AbstractStrategy {
 	}
 
 	@Override
-	public void initMarket() {
-		addInstrument(Instruments.HEINZ);
-		
+	public List<InstrumentId> getMarket() {
+		return Arrays.asList(Instruments.HEINZ);
+	
 	}
 
 }

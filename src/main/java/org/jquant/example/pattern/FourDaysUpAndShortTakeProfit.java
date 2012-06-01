@@ -1,11 +1,16 @@
 package org.jquant.example.pattern;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.jquant.data.Instruments;
 import org.jquant.model.InstrumentId;
+import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
+import org.jquant.portfolio.Trade.TradeSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.AbstractStrategy;
+import org.jquant.strategy.MonoStrategy;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -14,7 +19,7 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy
-public class FourDaysUpAndShortTakeProfit extends AbstractStrategy {
+public class FourDaysUpAndShortTakeProfit extends MonoStrategy {
 
 	//simultation parameter: quantity traded 
 	private final int quantity = 10 ;
@@ -22,11 +27,18 @@ public class FourDaysUpAndShortTakeProfit extends AbstractStrategy {
 	//simulation parameter: Up Move
 	private final double upPercent = 2;
 	
+	// take profit in % 
+	private final int takeProfit = 4;
+	
 	//simultation parameter : # of Consecutive Close Count  
 	private final int ccc = 3 ;
 	
 	private int count;
 	private double prevClose;
+
+	private Order shortOrder;
+
+	private Order tpOrder;
 	
 	
 	@Override
@@ -35,39 +47,58 @@ public class FourDaysUpAndShortTakeProfit extends AbstractStrategy {
 		count = 0;
 		
 	}
+	
+	
 	@Override
-	public void onCandleOpen(InstrumentId instrument, Candle candle) {
-		super.onCandleOpen(instrument, candle);
+	public void onCandle(InstrumentId instrument, Candle candle) {
+	
+		
+		// We need to let a bar go by to capture the prev close
 		if (prevClose != -1){
-			if (!hasPosition(instrument)){
+			if (!hasPosition()){
 				if (prevClose < candle.getClose()){
 					count++;
 				}else {
 					count = 0 ;
 				}
-				
+
 				/*
 				 * If we have seen 4 up days, and if the last day 
 				 * up was 2% or more, then open a new position, going short on the day close 
+				 * (eod market order, with a good broker and when volatility is low you should get an execution price near to close)
 				 */
 				if (count == ccc){
 					if ((((candle.getClose()-prevClose)/prevClose)*100)>=upPercent){
-						sendMarketOrder(instrument, OrderSide.SELL, quantity, CandleData.OPEN, "4 days up && last day was 2% up  --> SELL on day 5 open");
+
+						shortOrder = sendMarketOrder(instrument, OrderSide.SELL, quantity, CandleData.OPEN, "4 days up && last day was 2% up  --> SELL on day 5 open");
 					}
 				}
-				
+
+
 			}else{
-				sendMarketOrder(instrument, OrderSide.BUY, quantity, CandleData.OPEN,"day 6 Sell");
+				// Day 6 Get Out Of The Market anyhow 
+				if (tpOrder != null){
+					orderManager.cancelOrder(tpOrder);
+				}
+				sendMarketOrder(instrument, OrderSide.BUY, quantity, CandleData.OPEN,"day 6 Buy Cover");
 			}
 		}
 		prevClose = candle.getClose();
 	}
 	
-
 	@Override
-	public void initMarket() {
-		addInstrument(Instruments.HEINZ);
-		
+	public void onPositionOpened(TradeSide side, InstrumentId instrumentId) {
+		super.onPositionOpened(side, instrumentId);
+		// Take Profit Limit Order
+		double targetPrice = shortOrder.getFilledPrice() * (1-takeProfit/100.0);
+		tpOrder = sendLimitOrder(instrumentId, OrderSide.BUY, quantity, targetPrice, "Exit (Take Profit)");
+	}
+	
+	
+	@Override
+	public List<InstrumentId> getMarket() {
+		return Arrays.asList(Instruments.HEINZ);
+	
 	}
 
 }
