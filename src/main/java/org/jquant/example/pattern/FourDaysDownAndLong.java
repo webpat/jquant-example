@@ -22,7 +22,7 @@ import org.jquant.strategy.Strategy;
 public class FourDaysDownAndLong extends MonoStrategy {
 
 	//simulation parameter: quantity traded 
-	private final int quantity = 10 ;
+	private final int quantity = 1000 ;
 	
 	//simulation parameter : number of down closes 
 	private final int closesCount = 3 ;
@@ -65,7 +65,7 @@ public class FourDaysDownAndLong extends MonoStrategy {
 
 	@Override
 	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.HEINZ);
+		return Arrays.asList(Instruments.EURUSD,Instruments.GBPUSD,Instruments.AUDUSD);
 	
 	}
 

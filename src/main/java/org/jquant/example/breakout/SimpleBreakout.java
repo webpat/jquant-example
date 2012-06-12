@@ -40,7 +40,7 @@ public class SimpleBreakout extends MonoStrategy {
 
 	@Override
 	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.HEINZ);
+		return Arrays.asList(Instruments.LYXOR_TOPIX,Instruments.LYXOR_NASDAQ_100);
 
 	}
 
