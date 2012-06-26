@@ -5,12 +5,13 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
-import org.jquant.data.Instruments;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.portfolio.Trade.TradeSide;
 import org.jquant.serie.Candle;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -21,13 +22,14 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy(value="Counter Trend strategy")
-public class CounterTrend extends MonoStrategy {
+public class CounterTrend extends MonoAssetStrategy {
 
 	
 	private int mDownCount;
 	private int mUpCount;
 	private Candle mPrevCandle;
-	// Simulation parameter (number of successive trend signals) 
+	
+	@Parameter(category="parameters",description="number of successive trend signals")
 	private int mNumSignal;
 	
 	@Override

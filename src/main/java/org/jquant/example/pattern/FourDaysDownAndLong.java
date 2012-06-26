@@ -3,12 +3,13 @@ package org.jquant.example.pattern;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jquant.data.Instruments;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -19,12 +20,12 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy
-public class FourDaysDownAndLong extends MonoStrategy {
+public class FourDaysDownAndLong extends MonoAssetStrategy {
 
-	//simulation parameter: quantity traded 
+	@Parameter(category="parameters",description="quantity to trade")
 	private final int quantity = 1000 ;
 	
-	//simulation parameter : number of down closes 
+	@Parameter(category="parameters",description="number of bear closes")
 	private final int closesCount = 3 ;
 	
 	private int count;

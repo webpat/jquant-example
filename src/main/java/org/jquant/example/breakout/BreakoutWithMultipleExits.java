@@ -3,13 +3,14 @@ package org.jquant.example.breakout;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jquant.data.Instruments;
 import org.jquant.indicator.HighestHigh;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -24,7 +25,7 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy
-public class BreakoutWithMultipleExits extends MonoStrategy {
+public class BreakoutWithMultipleExits extends MonoAssetStrategy {
 
 	
 	// Used for the exit
@@ -34,13 +35,13 @@ public class BreakoutWithMultipleExits extends MonoStrategy {
 	
 	private boolean entryEnabled = true;
 
-	// simulation parameter : lookback period length 
+	@Parameter(category="parameters",description="lookback period length")
 	private final int length = 30;
 
-	// simulation parameter: # bars holding the position 
+	@Parameter(category="parameters",description="# bars holding the position")
 	private int barsToExit;
 	
-	//simulation parameter 
+	@Parameter(category="parameters",description="quantity to trade")
 	private final int qty = 100;
 	
 	@Override

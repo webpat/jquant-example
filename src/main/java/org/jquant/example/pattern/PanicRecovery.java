@@ -3,20 +3,21 @@ package org.jquant.example.pattern;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jquant.data.Instruments;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 
-public class PanicRecovery extends MonoStrategy {
+public class PanicRecovery extends MonoAssetStrategy {
 
-	//simulation parameter: buy when asset prices drop more than this in one day 
+	@Parameter(category="parameters",description="buy when asset prices drop more than this % in one day")
 	private final double percent = 5 ;
 
-	//simulation parameter : Qty 
+	@Parameter(category="parameters",description="quantity to trade")
 	private final double qty = 100 ;
 
 	private Order buyOrder; 

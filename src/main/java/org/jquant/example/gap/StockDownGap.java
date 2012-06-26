@@ -3,14 +3,15 @@ package org.jquant.example.gap;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jquant.data.Instruments;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.portfolio.Trade.TradeSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -19,12 +20,12 @@ import org.jquant.strategy.Strategy;
  * 
  */
 @Strategy
-public class StockDownGap extends MonoStrategy {
+public class StockDownGap extends MonoAssetStrategy {
 
-	// simulation parameter
+	@Parameter(category="parameters",description="quantity to trade")
 	private final int qty = 100;
 
-	// simulation parameter : Gap Percent
+	@Parameter(category="parameters",description="Gap percent")
 	private final double percent = 2;
 
 	private double prevClose;

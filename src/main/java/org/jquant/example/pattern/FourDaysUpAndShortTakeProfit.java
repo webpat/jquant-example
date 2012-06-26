@@ -3,14 +3,15 @@ package org.jquant.example.pattern;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jquant.data.Instruments;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.portfolio.Trade.TradeSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -19,18 +20,18 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy
-public class FourDaysUpAndShortTakeProfit extends MonoStrategy {
+public class FourDaysUpAndShortTakeProfit extends MonoAssetStrategy {
 
-	//simultation parameter: quantity traded 
+	@Parameter(category="parameters",description="quantity to trade")
 	private final int quantity = 10 ;
 	
-	//simulation parameter: Up Move
+	@Parameter(category="parameters",description="up percent move")
 	private final double upPercent = 2;
 	
-	// take profit in % 
+	@Parameter(category="parameters",description="take profit in %")
 	private final int takeProfit = 4;
 	
-	//simultation parameter : # of Consecutive Close Count  
+	@Parameter(category="parameters",description="# of Consecutive Close Count")
 	private final int ccc = 3 ;
 	
 	private int count;

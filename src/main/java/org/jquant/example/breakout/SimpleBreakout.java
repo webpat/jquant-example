@@ -3,13 +3,14 @@ package org.jquant.example.breakout;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jquant.data.Instruments;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MonoStrategy;
+import org.jquant.strategy.MonoAssetStrategy;
+import org.jquant.strategy.Parameter;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -26,12 +27,12 @@ import org.jquant.strategy.Strategy;
  * 
  */
 @Strategy
-public class SimpleBreakout extends MonoStrategy {
+public class SimpleBreakout extends MonoAssetStrategy {
 
-	// simulation parameter
+	@Parameter(category="parameters",description="quantity to trade")
 	private final int qty = 100;
 
-	// simulation parameter
+	@Parameter(category="parameters",description="gap %")
 	private final double breakOutPercent = 4;
 
 	private double prevClose;

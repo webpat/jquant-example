@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jquant.data.Instruments;
 import org.jquant.indicator.SMA;
+import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
 import org.jquant.serie.Candle.CandleData;
-import org.jquant.strategy.MultiStrategy;
+import org.jquant.strategy.MultiAssetStrategy;
 import org.jquant.strategy.Strategy;
 
 /**
@@ -21,7 +21,7 @@ import org.jquant.strategy.Strategy;
  *
  */
 @Strategy(value="Simple Strategy")
-public class MultiSMACrossOver extends MultiStrategy {
+public class MultiSMACrossOver extends MultiAssetStrategy {
 
 	private static final int MA_LENGTH = 110;
 	
