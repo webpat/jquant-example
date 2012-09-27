@@ -1,9 +1,6 @@
 package org.jquant.example.pattern;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.jquant.market.Instruments;
+import org.jquant.data.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
@@ -64,9 +61,12 @@ public class FourDaysDownAndLong extends MonoAssetStrategy {
 		prevClose = candle.getClose();
 	}
 
+	
 	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.EURUSD,Instruments.GBPUSD,Instruments.AUDUSD);
+	public void initMarket() {
+		addInstrument(Instruments.EURUSD);
+		addInstrument(Instruments.GBPUSD);
+		addInstrument(Instruments.AUDUSD);
 	
 	}
 

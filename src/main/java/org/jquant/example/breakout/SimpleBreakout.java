@@ -1,9 +1,6 @@
 package org.jquant.example.breakout;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.jquant.market.Instruments;
+import org.jquant.data.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
@@ -39,12 +36,7 @@ public class SimpleBreakout extends MonoAssetStrategy {
 
 	private Order buyOrder;
 
-	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.LYXOR_TOPIX,Instruments.LYXOR_NASDAQ_100);
-
-	}
-
+	
 	@Override
 	public void init() {
 		prevClose = -1;
@@ -81,6 +73,17 @@ public class SimpleBreakout extends MonoAssetStrategy {
 			}
 
 		}
+	}
+
+	@Override
+	public void initMarket()  {
+	
+		addInstrument(Instruments.LYXOR_TOPIX);
+		addInstrument(Instruments.LYXOR_NASDAQ_100);
+		addInstrument(Instruments.CRUDEOIL);
+		addInstrument(Instruments.GOOG);
+		addInstrument(Instruments.HEINZ);
+		addInstrument(Instruments.IBM);
 	}
 
 }

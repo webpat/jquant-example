@@ -1,11 +1,8 @@
 package org.jquant.example.range;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.joda.time.DateTime;
 import org.joda.time.Period;
-import org.jquant.market.Instruments;
+import org.jquant.data.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.portfolio.Trade.TradeSide;
@@ -80,8 +77,8 @@ public class CounterTrend extends MonoAssetStrategy {
 	}
 
 	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.HEINZ);
+	public void initMarket() {
+		addInstrument(Instruments.HEINZ);
 	
 	}
 	
