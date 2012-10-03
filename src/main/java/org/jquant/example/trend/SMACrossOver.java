@@ -1,11 +1,7 @@
 package org.jquant.example.trend;
 
-import java.util.Arrays;
-import java.util.List;
-
+import org.jquant.data.Instruments;
 import org.jquant.indicator.SMA;
-import org.jquant.market.Instruments;
-import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.strategy.AbstractStrategy;
 
@@ -44,8 +40,9 @@ public class SMACrossOver extends AbstractStrategy {
 	}
 
 	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.HEINZ);
+	public void initMarket() {
+		addInstrument(Instruments.HEINZ);
+		addInstrument(Instruments.IBM);
 	
 	}
 

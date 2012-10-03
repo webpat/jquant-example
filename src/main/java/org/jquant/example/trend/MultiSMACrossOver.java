@@ -1,12 +1,10 @@
 package org.jquant.example.trend;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import org.jquant.data.Instruments;
 import org.jquant.indicator.SMA;
-import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
@@ -44,8 +42,9 @@ public class MultiSMACrossOver extends MultiAssetStrategy {
 	}
 
 	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.HEINZ, Instruments.IBM);
+	public void initMarket() {
+		addInstrument(Instruments.HEINZ);
+		addInstrument(Instruments.IBM);
 	
 	}
 

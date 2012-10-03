@@ -1,10 +1,7 @@
 package org.jquant.example.breakout;
 
-import java.util.Arrays;
-import java.util.List;
-
+import org.jquant.data.Instruments;
 import org.jquant.indicator.HighestHigh;
-import org.jquant.market.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order.OrderSide;
 import org.jquant.serie.Candle;
@@ -45,8 +42,8 @@ public class BreakoutWithMultipleExits extends MonoAssetStrategy {
 	private final int qty = 100;
 	
 	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.HEINZ);
+	public void initMarket() {
+		addInstrument(Instruments.HEINZ);
 	
 	}
 

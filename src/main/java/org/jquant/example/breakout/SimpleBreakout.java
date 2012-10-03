@@ -1,9 +1,6 @@
 package org.jquant.example.breakout;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.jquant.market.Instruments;
+import org.jquant.data.Instruments;
 import org.jquant.model.InstrumentId;
 import org.jquant.order.Order;
 import org.jquant.order.Order.OrderSide;
@@ -30,7 +27,7 @@ import org.jquant.strategy.Strategy;
 public class SimpleBreakout extends MonoAssetStrategy {
 
 	@Parameter(category="parameters",description="quantity to trade")
-	private final int qty = 100;
+	private final int qty = 5;
 
 	@Parameter(category="parameters",description="gap %")
 	private final double breakOutPercent = 4;
@@ -39,12 +36,7 @@ public class SimpleBreakout extends MonoAssetStrategy {
 
 	private Order buyOrder;
 
-	@Override
-	public List<InstrumentId> getMarket() {
-		return Arrays.asList(Instruments.LYXOR_TOPIX,Instruments.LYXOR_NASDAQ_100);
-
-	}
-
+	
 	@Override
 	public void init() {
 		prevClose = -1;
@@ -81,6 +73,24 @@ public class SimpleBreakout extends MonoAssetStrategy {
 			}
 
 		}
+	}
+
+	@Override
+	public void initMarket()  {
+	
+//		addInstrument(Instruments.LYXOR_TOPIX);
+//		addInstrument(Instruments.LYXOR_NASDAQ_100);
+		addInstrument(Instruments.CRUDEOIL);
+		addInstrument(Instruments.COFFEE);
+		addInstrument(Instruments.COPPER);
+		addInstrument(Instruments.LUMBER);
+		addInstrument(Instruments.NATURALGAS);
+		addInstrument(Instruments.GOLD);
+		addInstrument(Instruments.SILVER);
+		addInstrument(Instruments.SOYBEAN);
+//		addInstrument(Instruments.GOOG);
+//		addInstrument(Instruments.HEINZ);
+//		addInstrument(Instruments.IBM);
 	}
 
 }
