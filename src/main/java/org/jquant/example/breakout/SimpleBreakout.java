@@ -27,7 +27,7 @@ import org.jquant.strategy.Strategy;
 public class SimpleBreakout extends MonoAssetStrategy {
 
 	@Parameter(category="parameters",description="quantity to trade")
-	private final int qty = 5;
+	private final int qty = 500;
 
 	@Parameter(category="parameters",description="gap %")
 	private final double breakOutPercent = 4;
@@ -80,16 +80,16 @@ public class SimpleBreakout extends MonoAssetStrategy {
 	
 //		addInstrument(Instruments.LYXOR_TOPIX);
 //		addInstrument(Instruments.LYXOR_NASDAQ_100);
-		addInstrument(Instruments.CRUDEOIL);
-		addInstrument(Instruments.COFFEE);
-		addInstrument(Instruments.COPPER);
-		addInstrument(Instruments.LUMBER);
-		addInstrument(Instruments.NATURALGAS);
-		addInstrument(Instruments.GOLD);
-		addInstrument(Instruments.SILVER);
-		addInstrument(Instruments.SOYBEAN);
+//		addInstrument(Instruments.CRUDEOIL);
+//		addInstrument(Instruments.COFFEE);
+//		addInstrument(Instruments.COPPER);
+//		addInstrument(Instruments.LUMBER);
+//		addInstrument(Instruments.NATURALGAS);
+//		addInstrument(Instruments.GOLD);
+//		addInstrument(Instruments.SILVER);
+//		addInstrument(Instruments.SOYBEAN);
 //		addInstrument(Instruments.GOOG);
-//		addInstrument(Instruments.HEINZ);
+		addInstrument(Instruments.HEINZ);
 //		addInstrument(Instruments.IBM);
 	}
 
